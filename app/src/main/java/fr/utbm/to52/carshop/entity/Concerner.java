@@ -4,13 +4,16 @@ package fr.utbm.to52.carshop.entity;
  * @author Youssoupha Sambe <youssoupha.sambe@utbm.fr>
  */
 public class Concerner {
-    private long idCommande;
-    private long idArticle;
+
+    private Long idConcerner;
+    private Long idCommande;
+    private Long idArticle;
     private Commande commande;
     private Article article;
     private int qte;
 
-    public Concerner(long idCommande, long idArticle, Commande commande, Article article, int qte) {
+    public Concerner(Long idConcerner, Long idCommande, Long idArticle, Commande commande, Article article, int qte) {
+        this.idConcerner = idConcerner;
         this.idCommande = idCommande;
         this.idArticle = idArticle;
         this.commande = commande;
@@ -18,19 +21,19 @@ public class Concerner {
         this.qte = qte;
     }
 
-    public long getIdCommande() {
+    public Long getIdCommande() {
         return idCommande;
     }
 
-    public void setIdCommande(long idCommande) {
+    public void setIdCommande(Long idCommande) {
         this.idCommande = idCommande;
     }
 
-    public long getIdArticle() {
+    public Long getIdArticle() {
         return idArticle;
     }
 
-    public void setIdArticle(long idArticle) {
+    public void setIdArticle(Long idArticle) {
         this.idArticle = idArticle;
     }
 
@@ -56,5 +59,13 @@ public class Concerner {
 
     public void setQte(int qte) {
         this.qte = qte;
+    }
+
+    public Long getIdConcerner() {
+        return idConcerner;
+    }
+
+    public void setIdConcerner(Long idConcerner) {
+        this.idConcerner = idConcerner;
     }
 }

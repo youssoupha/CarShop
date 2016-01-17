@@ -1,19 +1,21 @@
 package fr.utbm.to52.carshop.entity;
 
+import android.provider.BaseColumns;
+
 /**
  * @author Youssoupha Sambe <youssoupha.sambe@utbm.fr>
  */
 public class Article {
 
-    private long idArticle;
+    private Long idArticle;
     private String nomArticle;
     private String photo;
     private double prixUnitaire;
     private int qte;
-    private long idTypeArticle;
+    private Long idTypeArticle;
     private TypeArticle typeArticle;
 
-    public Article(String nomArticle, String photo, double prixUnitaire, int qte, long idTypeArticle, TypeArticle typeArticle) {
+    public Article(String nomArticle, String photo, double prixUnitaire, int qte, Long idTypeArticle, TypeArticle typeArticle) {
         this.nomArticle = nomArticle;
         this.photo = photo;
         this.prixUnitaire = prixUnitaire;
@@ -22,11 +24,11 @@ public class Article {
         this.typeArticle = typeArticle;
     }
 
-    public long getIdArticle() {
+    public Long getIdArticle() {
         return idArticle;
     }
 
-    public void setIdArticle(long idArticle) {
+    public void setIdArticle(Long idArticle) {
         this.idArticle = idArticle;
     }
 
@@ -62,11 +64,11 @@ public class Article {
         this.qte = qte;
     }
 
-    public long getIdTypeArticle() {
+    public Long getIdTypeArticle() {
         return idTypeArticle;
     }
 
-    public void setIdTypeArticle(long idTypeArticle) {
+    public void setIdTypeArticle(Long idTypeArticle) {
         this.idTypeArticle = idTypeArticle;
     }
 

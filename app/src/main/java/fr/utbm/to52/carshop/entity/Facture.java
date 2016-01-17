@@ -3,26 +3,23 @@ package fr.utbm.to52.carshop.entity;
 import java.util.Date;
 
 /**
- * Created by MomsKébé on 03/01/2016.
+ * @author Youssoupha Sambe <youssoupha.sambe@utbm.fr>
  */
 public class Facture {
 
-    private long idFacture;
+    private Long idFacture;
     private Date dateFacture;
-    private long idCommande;
-    private Commande commande;
 
-    public Facture(Date dateFacture, long idCommande, Commande commande) {
+    public Facture(Long idFacture, Date dateFacture) {
+        this.idFacture = idFacture;
         this.dateFacture = dateFacture;
-        this.idCommande = idCommande;
-        this.commande = commande;
     }
 
-    public long getIdFacture() {
+    public Long getIdFacture() {
         return idFacture;
     }
 
-    public void setIdFacture(long idFacture) {
+    public void setIdFacture(Long idFacture) {
         this.idFacture = idFacture;
     }
 
@@ -32,21 +29,5 @@ public class Facture {
 
     public void setDateFacture(Date dateFacture) {
         this.dateFacture = dateFacture;
-    }
-
-    public long getIdCommande() {
-        return idCommande;
-    }
-
-    public void setIdCommande(long idCommande) {
-        this.idCommande = idCommande;
-    }
-
-    public Commande getCommande() {
-        return commande;
-    }
-
-    public void setCommande(Commande commande) {
-        this.commande = commande;
     }
 }

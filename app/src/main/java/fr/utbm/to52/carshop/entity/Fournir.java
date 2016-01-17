@@ -6,15 +6,17 @@ import java.util.Date;
  * @author Youssoupha Sambe <youssoupha.sambe@utbm.fr>
  */
 public class Fournir {
-    private long idArticle;
-    private long idFournisseur;
+    private Long idFournir;
+    private Long idArticle;
+    private Long idFournisseur;
     private Article article;
     private Fournisseur fournisseur;
     private long qteFournie;
     private Date dateDemandeApprov;
     private Date dateLivraison;
 
-    public Fournir(long idArticle, long idFournisseur, Article article, Fournisseur fournisseur, long qteFournie, Date dateDemandeApprov, Date dateLivraison) {
+    public Fournir(Long idFournir, Long idArticle, Long idFournisseur, Article article, Fournisseur fournisseur, long qteFournie, Date dateDemandeApprov, Date dateLivraison) {
+        this.idFournir = idFournir;
         this.idArticle = idArticle;
         this.idFournisseur = idFournisseur;
         this.article = article;
@@ -24,19 +26,19 @@ public class Fournir {
         this.dateLivraison = dateLivraison;
     }
 
-    public long getIdArticle() {
+    public Long getIdArticle() {
         return idArticle;
     }
 
-    public void setIdArticle(long idArticle) {
+    public void setIdArticle(Long idArticle) {
         this.idArticle = idArticle;
     }
 
-    public long getIdFournisseur() {
+    public Long getIdFournisseur() {
         return idFournisseur;
     }
 
-    public void setIdFournisseur(long idFournisseur) {
+    public void setIdFournisseur(Long idFournisseur) {
         this.idFournisseur = idFournisseur;
     }
 
@@ -78,5 +80,13 @@ public class Fournir {
 
     public void setDateLivraison(Date dateLivraison) {
         this.dateLivraison = dateLivraison;
+    }
+
+    public Long getIdFournir() {
+        return idFournir;
+    }
+
+    public void setIdFournir(Long idFournir) {
+        this.idFournir = idFournir;
     }
 }

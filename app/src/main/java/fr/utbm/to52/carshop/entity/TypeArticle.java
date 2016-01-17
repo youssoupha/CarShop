@@ -1,22 +1,22 @@
 package fr.utbm.to52.carshop.entity;
 
 /**
- * Created by MomsKébé on 03/01/2016.
+ * @author Youssoupha Sambe <youssoupha.sambe@utbm.fr>
  */
 public class TypeArticle {
 
-    private long idType;
+    private Long idType;
     private String nomType;
 
     public TypeArticle(String nomType) {
         this.nomType = nomType;
     }
 
-    public long getIdType() {
+    public Long getIdType() {
         return idType;
     }
 
-    public void setIdType(long idType) {
+    public void setIdType(Long idType) {
         this.idType = idType;
     }
 

@@ -4,7 +4,7 @@ package fr.utbm.to52.carshop.entity;
  * @author Youssoupha Sambe <youssoupha.sambe@utbm.fr>
  */
 public class Fournisseur {
-    private long idFournisseur;
+    private Long idFournisseur;
     private String codeFournisseur;
     private String nomFournisseur;
     private String adressFournisseur;
@@ -15,11 +15,11 @@ public class Fournisseur {
         this.adressFournisseur = adressFournisseur;
     }
 
-    public long getIdFournisseur() {
+    public Long getIdFournisseur() {
         return idFournisseur;
     }
 
-    public void setIdFournisseur(long idFournisseur) {
+    public void setIdFournisseur(Long idFournisseur) {
         this.idFournisseur = idFournisseur;
     }
 

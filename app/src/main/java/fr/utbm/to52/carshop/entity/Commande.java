@@ -6,26 +6,26 @@ import java.util.Date;
  * @author Youssoupha Sambe <youssoupha.sambe@utbm.fr>
  */
 public class Commande {
-    private long idCommande;
+    private Long idCommande;
     private Date dateCommande;
     private Date dateLivraison;
-    private long idFacture;
+    private Long idFacture;
     private Facture facture;
-    private long idClient;
+    private Long idClient;
     private Client client;
 
-    public Commande(Date dateCommande, Date dateLivraison, long idClient, Client client) {
+    public Commande(Date dateCommande, Date dateLivraison, Long idClient, Client client) {
         this.dateCommande = dateCommande;
         this.dateLivraison = dateLivraison;
         this.idClient = idClient;
         this.client = client;
     }
 
-    public long getIdCommande() {
+    public Long getIdCommande() {
         return idCommande;
     }
 
-    public void setIdCommande(long idCommande) {
+    public void setIdCommande(Long idCommande) {
         this.idCommande = idCommande;
     }
 
@@ -45,11 +45,11 @@ public class Commande {
         this.dateLivraison = dateLivraison;
     }
 
-    public long getIdFacture() {
+    public Long getIdFacture() {
         return idFacture;
     }
 
-    public void setIdFacture(long idFacture) {
+    public void setIdFacture(Long idFacture) {
         this.idFacture = idFacture;
     }
 
@@ -61,11 +61,11 @@ public class Commande {
         this.facture = facture;
     }
 
-    public long getIdClient() {
+    public Long getIdClient() {
         return idClient;
     }
 
-    public void setIdClient(long idClient) {
+    public void setIdClient(Long idClient) {
         this.idClient = idClient;
     }
 

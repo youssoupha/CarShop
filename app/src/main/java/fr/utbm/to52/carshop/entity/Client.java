@@ -6,7 +6,7 @@ import java.util.Date;
  * @author Youssoupha Sambe <youssoupha.sambe@utbm.fr>
  */
 public class Client {
-    private long idClient;
+    private Long idClient;
     private String emailClient;
     private String nomClient;
     private String pNomClient;
@@ -21,11 +21,11 @@ public class Client {
         this.dateNaissClient = dateNaissClient;
     }
 
-    public long getIdClient() {
+    public Long getIdClient() {
         return idClient;
     }
 
-    public void setIdClient(long idClient) {
+    public void setIdClient(Long idClient) {
         this.idClient = idClient;
     }
 
@@ -45,7 +45,7 @@ public class Client {
         this.nomClient = nomClient;
     }
 
-    public String getpNomClient() {
+    public String getPNomClient() {
         return pNomClient;
     }
 
