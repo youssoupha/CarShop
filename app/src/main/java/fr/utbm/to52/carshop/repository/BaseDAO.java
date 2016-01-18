@@ -15,7 +15,7 @@ public interface BaseDAO<T>{
      * @param obj the object to insert
      * @return the object as it is in the database
      */
-    T ins(T obj);
+    void ins(T obj);
 
     /**
      * Update an object into the database
@@ -25,13 +25,12 @@ public interface BaseDAO<T>{
 
     /**
      * Delete an object from database
-     * @param id the identifier of the object to delete
+     * @param obj the object to delete
      */
-    void del(long id);
+    void del(T obj);
 
     /**
      * Return an existing object from database
-     * @param id the identifier of the database object to return
      * @return the object as it is into DB
      */
     List<T> get();

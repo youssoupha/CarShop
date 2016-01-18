@@ -34,7 +34,7 @@ public class TypeArticleSQLiteDAO extends BaseSQLiteDao implements BaseDAO<TypeA
      * {@inheritDoc}
      */
     @Override
-    public TypeArticle ins(TypeArticle obj) {
+    public void ins(TypeArticle obj) {
         TypeArticle typeArticle = obj;
         ContentValues values = new ContentValues();
         Map<String, Column> columns = typeArticleTable.getColumns();
@@ -42,8 +42,6 @@ public class TypeArticleSQLiteDAO extends BaseSQLiteDao implements BaseDAO<TypeA
         values.put(columns.get("nomType").toString(), typeArticle.getNomType());
 
         typeArticle.setIdType(sqLiteDatabase.insert(typeArticleTable.getTableName(), null, values));
-
-        return typeArticle;
     }
 
     /**
@@ -69,11 +67,11 @@ public class TypeArticleSQLiteDAO extends BaseSQLiteDao implements BaseDAO<TypeA
      * {@inheritDoc}
      */
     @Override
-    public void del(long id) {
+    public void del(TypeArticle obj) {
         sqLiteDatabase.delete(
                 typeArticleTable.getTableName(),
                 typeArticleTable.getPrimaryKey().toString() + " = ?",
-                new String[]{String.valueOf(id)});
+                new String[]{String.valueOf(obj.getIdType())});
     }
 
     @Override

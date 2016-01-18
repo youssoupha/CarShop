@@ -29,7 +29,7 @@ import java.util.List;
 /**
  *
  */
-public class RequestHttpArticle {
+public class RequestHttpEntity {
     private static final String USER_AGENT = "Mozilla/5.0";
     // HTTP GET request send by Terminal
 
@@ -49,15 +49,12 @@ public class RequestHttpArticle {
             httpURLConnection.setUseCaches(false);
             httpURLConnection.setRequestProperty("Content-Type", "application/json");
             httpURLConnection.connect();
-            // Envoie de la requete
             int responseCode = httpURLConnection.getResponseCode();
-            // Crï¿½ation de flux pour la rï¿½ponse
             BufferedReader in = new BufferedReader(
                     new InputStreamReader(httpURLConnection.getInputStream())
             );
             String inputLine;
             StringBuffer response = new StringBuffer();
-            // Boucler jusqu'ï¿½ ce qu'il ne reste plus de flux ï¿½ rï¿½cupï¿½rer
             switch (responseCode){
                 case HttpURLConnection.HTTP_OK:
                     while((inputLine = in.readLine())!= null){
@@ -125,15 +122,12 @@ public class RequestHttpArticle {
             os.close();
 
             httpURLConnection.connect();
-            // Envoie de la requete
             int responseCode = httpURLConnection.getResponseCode();
-            // Crï¿½ation de flux pour la rï¿½ponse
             BufferedReader in = new BufferedReader(
                     new InputStreamReader(httpURLConnection.getInputStream())
             );
             String inputLine;
             StringBuffer response = new StringBuffer();
-            // Boucler jusqu'ï¿½ ce qu'il ne reste plus de flux ï¿½ rï¿½cupï¿½rer
             switch (responseCode){
                 case HttpURLConnection.HTTP_OK:
                     while((inputLine = in.readLine())!= null){
@@ -187,10 +181,6 @@ public class RequestHttpArticle {
         post.setEntity(new UrlEncodedFormEntity(urlParameters));
 
         HttpResponse response = client.execute(post);
- 		/*System.out.println("\nSending 'POST' request to URL : " + url);
- 		System.out.println("Post parameters : " + post.getEntity());
- 		System.out.println("Response Code : " + 
-                                     response.getStatusLine().getStatusCode());*/
 
         BufferedReader rd = new BufferedReader(
                 new InputStreamReader(response.getEntity().getContent()));
@@ -205,20 +195,5 @@ public class RequestHttpArticle {
 
         return result.toString();
     }
-
-
-    public static void main(String[] args) {
-        try {
-            //sendPost("http://192.168.0.101:8080/catalogue_web/traitement", Constants.BUILD_INSERT_ARTICLE_VALUES("opel 2&marque=Opel", "Opel", "0", "belle voiture", "Belfort", "1", "djibril3fr@yahoo.fr", "Belfort", "90000", null, "2"));
-            //System.out.println("valeur :"+sendPost("http://192.168.0.101:8080/catalogue_web/traitement", "add=add&designation=opel 2&marque=Opel&prix=0&detail=belle voiture &target=ANDROID&adresse=Belfort &client=djibril3fr@yahoo.fr&email=djibril3fr@yahoo.fr&ville=Belfort &codepostal=Belfort &image=null&quantite=2&email=djibril3fr@yahoo.fr"));
-            System.out.println("valeur :"+sendGet3(CarShopUtils.DO_READ_CLIENT_URL()));
-            // sendGet2("http://192.168.0.103:8080/catalogue_web/catalogueserver?mac=1212");
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
-    }
-
 
 }

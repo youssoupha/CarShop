@@ -33,7 +33,7 @@ public class ArticleSQLiteDAO extends BaseSQLiteDao implements BaseDAO<Article> 
      * {@inheritDoc}
      */
     @Override
-    public Article ins(Article obj) {
+    public void ins(Article obj) {
         Article article = obj;
         ContentValues values = new ContentValues();
         Map<String, Column> columns = articleTable.getColumns();
@@ -45,8 +45,6 @@ public class ArticleSQLiteDAO extends BaseSQLiteDao implements BaseDAO<Article> 
         values.put(columns.get("idTypeArticle").toString(), article.getIdTypeArticle());
 
         article.setIdArticle(sqLiteDatabase.insert(articleTable.getTableName(), null, values));
-
-        return article;
     }
 
     /**
@@ -76,11 +74,11 @@ public class ArticleSQLiteDAO extends BaseSQLiteDao implements BaseDAO<Article> 
      * {@inheritDoc}
      */
     @Override
-    public void del(long id) {
+    public void del(Article obj) {
         sqLiteDatabase.delete(
                 articleTable.getTableName(),
                 articleTable.getPrimaryKey().toString() + " = ?",
-                new String[]{String.valueOf(id)});
+                new String[]{String.valueOf(obj.getIdArticle())});
     }
 
     @Override

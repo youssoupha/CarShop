@@ -37,7 +37,7 @@ public class ClientSQLiteDAO extends BaseSQLiteDao implements BaseDAO<Client> {
      * {@inheritDoc}
      */
     @Override
-    public Client ins(Client obj) {
+    public void ins(Client obj) {
         Client client = obj;
         ContentValues values = new ContentValues();
         Map<String, Column> columns = clientTable.getColumns();
@@ -51,8 +51,6 @@ public class ClientSQLiteDAO extends BaseSQLiteDao implements BaseDAO<Client> {
         values.put(columns.get("dateNaissClient").toString(), formatter.format(client.getDateNaissClient()));
 
         client.setIdClient(sqLiteDatabase.insert(clientTable.getTableName(), null, values));
-
-        return client;
     }
 
     /**
@@ -84,11 +82,11 @@ public class ClientSQLiteDAO extends BaseSQLiteDao implements BaseDAO<Client> {
      * {@inheritDoc}
      */
     @Override
-    public void del(long id) {
+    public void del(Client obj) {
         sqLiteDatabase.delete(
                 clientTable.getTableName(),
                 clientTable.getPrimaryKey().toString() + " = ?",
-                new String[]{String.valueOf(id)});
+                new String[]{String.valueOf(obj.getIdClient())});
     }
 
     @Override

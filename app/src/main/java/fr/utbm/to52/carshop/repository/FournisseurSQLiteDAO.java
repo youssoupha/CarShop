@@ -34,7 +34,7 @@ public class FournisseurSQLiteDAO extends BaseSQLiteDao implements BaseDAO<Fourn
      * {@inheritDoc}
      */
     @Override
-    public Fournisseur ins(Fournisseur obj) {
+    public void ins(Fournisseur obj) {
         Fournisseur fournisseur = obj;
         ContentValues values = new ContentValues();
         Map<String, Column> columns = fournisseurTable.getColumns();
@@ -45,8 +45,6 @@ public class FournisseurSQLiteDAO extends BaseSQLiteDao implements BaseDAO<Fourn
         values.put(columns.get("adressFournisseur").toString(), fournisseur.getAdressFournisseur());
 
         fournisseur.setIdFournisseur(sqLiteDatabase.insert(fournisseurTable.getTableName(), null, values));
-
-        return fournisseur;
     }
 
     /**
@@ -74,11 +72,11 @@ public class FournisseurSQLiteDAO extends BaseSQLiteDao implements BaseDAO<Fourn
      * {@inheritDoc}
      */
     @Override
-    public void del(long id) {
+    public void del(Fournisseur obj) {
         sqLiteDatabase.delete(
                 fournisseurTable.getTableName(),
                 fournisseurTable.getPrimaryKey().toString() + " = ?",
-                new String[]{String.valueOf(id)});
+                new String[]{String.valueOf(obj.getIdFournisseur())});
     }
 
     @Override

@@ -15,19 +15,19 @@ public class SQLiteCRUD<T> {
         this.dao = dao;
     }
 
-    T ins(T obj) {
-        return dao.ins(obj);
+    public void ins(T obj) {
+        dao.ins(obj);
     }
 
-    void upd(T obj) {
+    public void upd(T obj) {
         dao.upd(obj);
     }
 
-    void del(long id) {
-        dao.del(id);
+    public void del(T obj) {
+        dao.del(obj);
     }
 
-    List<T> get() {
+    public List<T> get() {
         return dao.get();
     }
 }

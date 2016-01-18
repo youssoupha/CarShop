@@ -37,7 +37,7 @@ public class FournirSQLiteDAO extends BaseSQLiteDao implements BaseDAO<Fournir> 
      * {@inheritDoc}
      */
     @Override
-    public Fournir ins(Fournir obj) {
+    public void ins(Fournir obj) {
         Fournir fournir = obj;
         ContentValues values = new ContentValues();
         Map<String, Column> columns = fournirTable.getColumns();
@@ -52,7 +52,6 @@ public class FournirSQLiteDAO extends BaseSQLiteDao implements BaseDAO<Fournir> 
 
         fournir.setIdFournir(sqLiteDatabase.insert(fournirTable.getTableName(), null, values));
 
-        return fournir;
     }
 
     /**
@@ -84,11 +83,11 @@ public class FournirSQLiteDAO extends BaseSQLiteDao implements BaseDAO<Fournir> 
      * {@inheritDoc}
      */
     @Override
-    public void del(long id) {
+    public void del(Fournir obj) {
         sqLiteDatabase.delete(
                 fournirTable.getTableName(),
                 fournirTable.getPrimaryKey().toString() + " = ?",
-                new String[]{String.valueOf(id)});
+                new String[]{String.valueOf(obj.getIdFournir())});
     }
 
     @Override

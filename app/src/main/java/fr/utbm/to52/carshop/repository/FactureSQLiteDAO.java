@@ -37,7 +37,7 @@ public class FactureSQLiteDAO extends BaseSQLiteDao implements BaseDAO<Facture> 
      * {@inheritDoc}
      */
     @Override
-    public Facture ins(Facture obj) {
+    public void ins(Facture obj) {
         Facture facture = obj;
         ContentValues values = new ContentValues();
         Map<String, Column> columns = factureTable.getColumns();
@@ -46,8 +46,6 @@ public class FactureSQLiteDAO extends BaseSQLiteDao implements BaseDAO<Facture> 
         values.put(columns.get("dateFacture").toString(), formatter.format(facture.getDateFacture()));
 
         facture.setIdFacture(sqLiteDatabase.insert(factureTable.getTableName(), null, values));
-
-        return facture;
     }
 
     /**
@@ -74,11 +72,11 @@ public class FactureSQLiteDAO extends BaseSQLiteDao implements BaseDAO<Facture> 
      * {@inheritDoc}
      */
     @Override
-    public void del(long id) {
+    public void del(Facture obj) {
         sqLiteDatabase.delete(
                 factureTable.getTableName(),
                 factureTable.getPrimaryKey().toString() + " = ?",
-                new String[]{String.valueOf(id)});
+                new String[]{String.valueOf(obj.getIdFacture())});
     }
 
     @Override

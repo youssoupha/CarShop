@@ -37,7 +37,7 @@ public class CommandeSQLiteDAO extends BaseSQLiteDao implements BaseDAO<Commande
      * {@inheritDoc}
      */
     @Override
-    public Commande ins(Commande obj) {
+    public void ins(Commande obj) {
         Commande commande = obj;
         ContentValues values = new ContentValues();
         Map<String, Column> columns = commandeTable.getColumns();
@@ -49,8 +49,6 @@ public class CommandeSQLiteDAO extends BaseSQLiteDao implements BaseDAO<Commande
         values.put(columns.get("idClient").toString(), commande.getIdClient());
 
         commande.setIdCommande(sqLiteDatabase.insert(commandeTable.getTableName(), null, values));
-
-        return commande;
     }
 
     /**
@@ -80,11 +78,11 @@ public class CommandeSQLiteDAO extends BaseSQLiteDao implements BaseDAO<Commande
      * {@inheritDoc}
      */
     @Override
-    public void del(long id) {
+    public void del(Commande obj) {
         sqLiteDatabase.delete(
                 commandeTable.getTableName(),
                 commandeTable.getPrimaryKey().toString() + " = ?",
-                new String[]{String.valueOf(id)});
+                new String[]{String.valueOf(obj.getIdCommande())});
     }
 
     @Override

@@ -7,11 +7,11 @@ import java.util.List;
  */
 public interface MysqlBaseCRUD <T> {
 
-    T ins(T obj);
+    void ins(T obj);
 
     void upd(T obj);
 
-    void del(long id);
+    void del(T obj);
 
     List<T> get();
 }

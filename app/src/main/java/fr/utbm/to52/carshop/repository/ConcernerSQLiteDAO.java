@@ -34,7 +34,7 @@ public class ConcernerSQLiteDAO extends BaseSQLiteDao implements BaseDAO<Concern
      * {@inheritDoc}
      */
     @Override
-    public Concerner ins(Concerner obj) {
+    public void ins(Concerner obj) {
         Concerner concerner = obj;
         ContentValues values = new ContentValues();
         Map<String, Column> columns = concernerTable.getColumns();
@@ -44,8 +44,6 @@ public class ConcernerSQLiteDAO extends BaseSQLiteDao implements BaseDAO<Concern
         values.put(columns.get("qte").toString(), concerner.getQte());
 
         concerner.setIdConcerner(sqLiteDatabase.insert(concernerTable.getTableName(), null, values));
-
-        return concerner;
     }
 
     /**
@@ -73,11 +71,11 @@ public class ConcernerSQLiteDAO extends BaseSQLiteDao implements BaseDAO<Concern
      * {@inheritDoc}
      */
     @Override
-    public void del(long id) {
+    public void del(Concerner obj) {
         sqLiteDatabase.delete(
                 concernerTable.getTableName(),
                 concernerTable.getPrimaryKey().toString() + " = ?",
-                new String[]{String.valueOf(id)});
+                new String[]{String.valueOf(obj.getIdConcerner())});
     }
 
     @Override
