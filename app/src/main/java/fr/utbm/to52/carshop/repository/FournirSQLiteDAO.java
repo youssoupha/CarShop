@@ -2,11 +2,16 @@ package fr.utbm.to52.carshop.repository;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
+import fr.utbm.to52.carshop.entity.Commande;
 import fr.utbm.to52.carshop.entity.Fournir;
 import fr.utbm.to52.carshop.utils.DataBaseUtils.Column;
 import fr.utbm.to52.carshop.utils.DataBaseUtils.DatabaseInfoProvider;
@@ -87,7 +92,33 @@ public class FournirSQLiteDAO extends BaseSQLiteDao implements BaseDAO<Fournir> 
     }
 
     @Override
-    public Fournir get(long id) {
-        return null;
+    public List<Fournir> get() {
+        Cursor c = sqLiteDatabase.rawQuery("select * from " + fournirTable.getTableName(), null);
+
+        DateFormat formatter = new SimpleDateFormat("YYYY-MM-dd");
+
+        List<Fournir> fournirs = new ArrayList<>();
+
+        while(c.moveToNext()) {
+            c.moveToFirst();
+            Fournir fournir = null;
+            try {
+                fournir = new Fournir(
+                        c.getLong(1),
+                        c.getLong(2),
+                        null,
+                        null,
+                        c.getLong(3),
+                        formatter.parse(c.getString(4)),
+                        formatter.parse(c.getString(5))
+                );
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            fournir.setIdFournir(c.getLong(0));
+            fournirs.add(fournir);
+        }
+        c.close();
+        return fournirs;
     }
 }

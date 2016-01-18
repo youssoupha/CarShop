@@ -2,9 +2,13 @@ package fr.utbm.to52.carshop.repository;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
+import fr.utbm.to52.carshop.entity.Fournisseur;
 import fr.utbm.to52.carshop.entity.TypeArticle;
 import fr.utbm.to52.carshop.utils.DataBaseUtils.Column;
 import fr.utbm.to52.carshop.utils.DataBaseUtils.DatabaseInfoProvider;
@@ -73,7 +77,19 @@ public class TypeArticleSQLiteDAO extends BaseSQLiteDao implements BaseDAO<TypeA
     }
 
     @Override
-    public TypeArticle get(long id) {
-        return null;
+    public List<TypeArticle> get() {
+        Cursor c = sqLiteDatabase.rawQuery("select * from " + typeArticleTable.getTableName(), null);
+        List<TypeArticle> typeArticles = new ArrayList<>();
+
+        while(c.moveToNext()) {
+            c.moveToFirst();
+            TypeArticle typeArticle = new TypeArticle(
+                    c.getString(1)
+            );
+            typeArticle.setIdType(c.getLong(0));
+            typeArticles.add(typeArticle);
+        }
+        c.close();
+        return typeArticles;
     }
 }

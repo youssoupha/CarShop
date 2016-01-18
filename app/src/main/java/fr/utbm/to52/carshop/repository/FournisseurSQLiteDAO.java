@@ -2,9 +2,13 @@ package fr.utbm.to52.carshop.repository;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
+import fr.utbm.to52.carshop.entity.Article;
 import fr.utbm.to52.carshop.entity.Fournisseur;
 import fr.utbm.to52.carshop.utils.DataBaseUtils.Column;
 import fr.utbm.to52.carshop.utils.DataBaseUtils.DatabaseInfoProvider;
@@ -78,7 +82,21 @@ public class FournisseurSQLiteDAO extends BaseSQLiteDao implements BaseDAO<Fourn
     }
 
     @Override
-    public Fournisseur get(long id) {
-        return null;
+    public List<Fournisseur> get() {
+        Cursor c = sqLiteDatabase.rawQuery("select * from " + fournisseurTable.getTableName(), null);
+        List<Fournisseur> fournisseurs = new ArrayList<>();
+
+        while(c.moveToNext()) {
+            c.moveToFirst();
+            Fournisseur fournisseur = new Fournisseur(
+                    c.getString(1),
+                    c.getString(2),
+                    c.getString(3)
+            );
+            fournisseur.setIdFournisseur(c.getLong(0));
+            fournisseurs.add(fournisseur);
+        }
+        c.close();
+        return fournisseurs;
     }
 }

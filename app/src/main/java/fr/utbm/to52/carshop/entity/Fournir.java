@@ -15,8 +15,13 @@ public class Fournir {
     private Date dateDemandeApprov;
     private Date dateLivraison;
 
-    public Fournir(Long idFournir, Long idArticle, Long idFournisseur, Article article, Fournisseur fournisseur, long qteFournie, Date dateDemandeApprov, Date dateLivraison) {
-        this.idFournir = idFournir;
+    public Fournir(Long idArticle,
+                   Long idFournisseur,
+                   Article article,
+                   Fournisseur fournisseur,
+                   long qteFournie,
+                   Date dateDemandeApprov,
+                   Date dateLivraison) {
         this.idArticle = idArticle;
         this.idFournisseur = idFournisseur;
         this.article = article;

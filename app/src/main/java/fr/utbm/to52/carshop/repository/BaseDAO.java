@@ -34,5 +34,5 @@ public interface BaseDAO<T>{
      * @param id the identifier of the database object to return
      * @return the object as it is into DB
      */
-    T get(long id);
+    List<T> get();
 }

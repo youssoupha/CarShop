@@ -2,11 +2,16 @@ package fr.utbm.to52.carshop.repository;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
+import fr.utbm.to52.carshop.entity.Commande;
 import fr.utbm.to52.carshop.entity.Facture;
 import fr.utbm.to52.carshop.utils.DataBaseUtils.Column;
 import fr.utbm.to52.carshop.utils.DataBaseUtils.DatabaseInfoProvider;
@@ -77,7 +82,29 @@ public class FactureSQLiteDAO extends BaseSQLiteDao implements BaseDAO<Facture> 
     }
 
     @Override
-    public Facture get(long id) {
-        return null;
+    public List<Facture> get() {
+        Cursor c = sqLiteDatabase.rawQuery("select * from " + factureTable.getTableName(), null);
+
+        DateFormat formatter = new SimpleDateFormat("YYYY-MM-dd");
+
+        List<Facture> factures = new ArrayList<>();
+
+        while(c.moveToNext()) {
+            c.moveToFirst();
+            Facture facture = null;
+            try {
+                facture = new Facture(
+                        formatter.parse(c.getString(2)),
+                        c.getLong(1),
+                        null
+                );
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            facture.setIdFacture(c.getLong(0));
+            factures.add(facture);
+        }
+        c.close();
+        return factures;
     }
 }

@@ -2,7 +2,10 @@ package fr.utbm.to52.carshop.repository;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import fr.utbm.to52.carshop.entity.Article;
@@ -81,7 +84,24 @@ public class ArticleSQLiteDAO extends BaseSQLiteDao implements BaseDAO<Article> 
     }
 
     @Override
-    public Article get(long id) {
-        return null;
+    public List<Article> get() {
+        Cursor c = sqLiteDatabase.rawQuery("select * from " + articleTable.getTableName(), null);
+        List<Article> articles = new ArrayList<>();
+
+        while(c.moveToNext()) {
+            c.moveToFirst();
+            Article article = new Article(
+                    c.getString(1),
+                    c.getString(2),
+                    c.getDouble(3),
+                    c.getInt(4),
+                    c.getLong(5),
+                    null
+            );
+            article.setIdArticle(c.getLong(0));
+            articles.add(article);
+        }
+        c.close();
+        return articles;
     }
 }

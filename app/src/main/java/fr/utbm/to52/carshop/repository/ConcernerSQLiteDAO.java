@@ -2,9 +2,13 @@ package fr.utbm.to52.carshop.repository;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
+import fr.utbm.to52.carshop.entity.Article;
 import fr.utbm.to52.carshop.entity.Concerner;
 import fr.utbm.to52.carshop.utils.DataBaseUtils.Column;
 import fr.utbm.to52.carshop.utils.DataBaseUtils.DatabaseInfoProvider;
@@ -77,7 +81,23 @@ public class ConcernerSQLiteDAO extends BaseSQLiteDao implements BaseDAO<Concern
     }
 
     @Override
-    public Concerner get(long id) {
-        return null;
+    public List<Concerner> get() {
+        Cursor c = sqLiteDatabase.rawQuery("select * from " + concernerTable.getTableName(), null);
+        List<Concerner> concerners = new ArrayList<>();
+
+        while(c.moveToNext()) {
+            c.moveToFirst();
+            Concerner concerner = new Concerner(
+                    c.getLong(1),
+                    c.getLong(2),
+                    null,
+                    null,
+                    c.getInt(3)
+            );
+            concerner.setIdConcerner(c.getLong(0));
+            concerners.add(concerner);
+        }
+        c.close();
+        return concerners;
     }
 }

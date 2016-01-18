@@ -18,8 +18,8 @@ public final class DatabaseInfoProvider {
 
         //Create tables
         /******************************** TypeArticle *******************************/
-        PKColumn idType = new PKColumn("idType", "ID_TYPE_ARTICLE", "INTEGER", "AUTOINCREMENT");
-        Column nomType = new Column("nomType", "NOM_TYPE_ARTICLE", "TEXT", null);
+        PKColumn idType = new PKColumn("idType", "ID_TYPE", "INTEGER", "AUTOINCREMENT");
+        Column nomType = new Column("nomType", "NOM_TYPE", "TEXT", null);
 
         Table typeArticle = new Table("TYPE_ARTICLE", idType, nomType);
         tables.add(typeArticle);
@@ -29,7 +29,7 @@ public final class DatabaseInfoProvider {
         Column photo = new Column("photo", "PHOTO_ARTICLE", "TEXT", null);;
         Column prixUnitaire = new Column("prixUnitaire", "PU_ARTICLE", "REAL", null);
         Column qte = new Column("qte", "QTE_ARTICLE", "INTEGER", null);
-        FKColumn idTypeArticle = new FKColumn("idTypeArticle", "ID_TYPE_ARTICLE", "INTEGER", null, "TYPE_ARTICLE", "ID_TYPE_ARTICLE");
+        FKColumn idTypeArticle = new FKColumn("idTypeArticle", "ID_TYPE", "INTEGER", null, "TYPE_ARTICLE", "ID_TYPE");
 
         Table article = new Table("ARTICLE", idArticle, nomArticle, photo, prixUnitaire, qte, idTypeArticle);
         tables.add(article);
@@ -43,23 +43,23 @@ public final class DatabaseInfoProvider {
 
         Table client = new Table("CLIENT", idClient, emailClient, nomClient, pNomClient, adressClient, dateNaissClient);
         tables.add(client);
-        /********************************** Facture **********************************/
-
-        PKColumn idFacture = new PKColumn("idFacture", "ID_FACTURE", "INTEGER", "AUTOINCREMENT");
-        Column dateFacture = new Column("dateFacture", "DATE_FACT", "TEXT", null);
-
-        Table facture = new Table("FACTURE", idFacture, dateFacture);
-        tables.add(facture);
 
         /********************************** Commande *********************************/
         PKColumn idCommande = new PKColumn("idCommande", "ID_COMMANDE", "INTEGER", "AUTOINCREMENT");
         Column dateCommande = new Column("dateCommande", "DATE_COMMANDE", "TEXT", null);
         Column dateLivraison = new Column("dateLivraison", "DATE_LIVRAISON", "TEXT", null);
-        FKColumn idFactureComm = new FKColumn("idFacture", "ID_FACTURE", "INTEGER", null, "FACTURE", "ID_FACTURE");
         FKColumn idClientComm = new FKColumn("idClient", "ID_CLI", "INTEGER", null, "CLIENT", "ID_CLI");
 
-        Table commande = new Table("COMMANDE", idCommande, dateCommande, dateLivraison, idFactureComm, idClientComm);
+        Table commande = new Table("COMMANDE", idCommande, dateCommande, dateLivraison, idClientComm);
         tables.add(commande);
+        /********************************** Facture **********************************/
+
+        PKColumn idFacture = new PKColumn("idFacture", "ID_FACTURE", "INTEGER", "AUTOINCREMENT");
+        FKColumn idCommandefact = new FKColumn("idCommande", "ID_COMMANDE", "INTEGER", null, "COMMANDE", "ID_COMMANDE");
+        Column dateFacture = new Column("dateFacture", "DATE_FACT", "TEXT", null);
+
+        Table facture = new Table("FACTURE", idFacture, idCommandefact, dateFacture);
+        tables.add(facture);
 
         /************************************ Concerner ********************************/
         PKColumn idConcerner =  new PKColumn("idConcerner", "ID_CONCERNER", "INTERGER", "AUTOINCREMENT");

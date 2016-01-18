@@ -12,6 +12,10 @@ import java.util.List;
 public class CarShopUtils {
     public final static String CONNECTION_TASK="connexion";
 
+
+    public final static String UID = "UPDATE";
+    public final static String READ = "READ";
+
     public final static String INSERT_CLIENT_TASK = "insertclient";
     public final static String DELETE_CLIENT_TASK = "deleteclient";
     public final static String UPDATE_CLIENT_TASK = "updateclient";
@@ -26,20 +30,16 @@ public class CarShopUtils {
     public static String SERVER_ADDRESS = "http://localhost/";
 
 
-    public static String DO_READ_CLIENT_URL() {
-        return SERVER_ADDRESS + "carshop/client.php";
+    public static String DO_READ(String table) {
+        return SERVER_ADDRESS + "carshop/"+table+".php";
     }
 
-    public static String DO_CLIENT_URL() {
-        return SERVER_ADDRESS + "carshop/clientEdit.php";
+    public static String DO_UID_URL(String table) {
+        return SERVER_ADDRESS + "carshop/"+table+"Edit.php";
     }
 
-    public static String DO_ARTICLE_URL() {
-        return SERVER_ADDRESS + "carshop/articleEdit.php";
-    }
-    public static String DO_READ_ARTICLE_URL() {
-        return SERVER_ADDRESS + "carshop/article.php";
-    }
+
+
 
 
 
@@ -60,20 +60,5 @@ public class CarShopUtils {
     }
 
 
-    /*
-    public final static String INSERT_ARTICLE_TASK = "insertarticle";
-    public final static String DELETE_ARTICLE_TASK = "deletearticle";
-    public final static String UPDATE_ARTICLE_TASK = "updatearticle";
-    public final static String ALL_ARTICLES_TASK = "allarticles";
 
-    public final static String INSERT_ARTICLE_TASK = "insertarticle";
-    public final static String DELETE_ARTICLE_TASK = "deletearticle";
-    public final static String UPDATE_ARTICLE_TASK = "updatearticle";
-    public final static String ALL_ARTICLES_TASK = "allarticles";
-
-    public final static String INSERT_ARTICLE_TASK = "insertarticle";
-    public final static String DELETE_ARTICLE_TASK = "deletearticle";
-    public final static String UPDATE_ARTICLE_TASK = "updatearticle";
-    public final static String ALL_ARTICLES_TASK = "allarticles";
-    */
 }

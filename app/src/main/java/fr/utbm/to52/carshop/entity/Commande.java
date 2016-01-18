@@ -9,8 +9,6 @@ public class Commande {
     private Long idCommande;
     private Date dateCommande;
     private Date dateLivraison;
-    private Long idFacture;
-    private Facture facture;
     private Long idClient;
     private Client client;
 
@@ -43,22 +41,6 @@ public class Commande {
 
     public void setDateLivraison(Date dateLivraison) {
         this.dateLivraison = dateLivraison;
-    }
-
-    public Long getIdFacture() {
-        return idFacture;
-    }
-
-    public void setIdFacture(Long idFacture) {
-        this.idFacture = idFacture;
-    }
-
-    public Facture getFacture() {
-        return facture;
-    }
-
-    public void setFacture(Facture facture) {
-        this.facture = facture;
     }
 
     public Long getIdClient() {

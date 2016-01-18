@@ -12,8 +12,7 @@ public class Concerner {
     private Article article;
     private int qte;
 
-    public Concerner(Long idConcerner, Long idCommande, Long idArticle, Commande commande, Article article, int qte) {
-        this.idConcerner = idConcerner;
+    public Concerner(Long idCommande, Long idArticle, Commande commande, Article article, int qte) {
         this.idCommande = idCommande;
         this.idArticle = idArticle;
         this.commande = commande;
